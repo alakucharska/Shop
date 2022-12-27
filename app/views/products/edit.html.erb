@@ -1,6 +1,6 @@
-<%= render "flash" %>
+<% render "flash" %>
 
-<h1> New Product </h1>
+<h1> Edit Product </h1>
 
 <%= form_with model: @product do |form| %>
   <div>
@@ -18,12 +18,12 @@
     <%= form.text_field :description %>
   </div>
 
-    <div>
+  <div>
   <%= form.label :category %><br>
   <%= form.select :category, Product.categories.keys %>
-</div>
+  </div>
 
   <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit %>
+</div>
 <% end %>
