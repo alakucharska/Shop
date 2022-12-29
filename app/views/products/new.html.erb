@@ -1,0 +1,29 @@
+<%= render "flash" %>
+
+<h1> New Product </h1>
+
+<%= form_with model: @product do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :category %><br>
+    <%= form.select :category, Product.categories.keys %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
