@@ -52,7 +52,7 @@ RSpec.describe Product, type: :model do
     it "validates presence of the description" do
       product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
       expect(product).to be_valid
-  end
+    end
 
     it "does not save the product if the description has not been provided" do
       product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: nil)
