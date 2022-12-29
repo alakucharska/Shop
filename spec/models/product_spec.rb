@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-
   describe "#category" do
     it "validates presence of the category" do
       product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
