@@ -52,7 +52,6 @@ RSpec.describe "Products Controllers", type: :request do
       get "/products/#{product.id}/edit"
       expect(response).to render_template(:edit)
       put "/products/#{product.id}", params: { product: { name: "Rainy Day" } }
-      pry
       expect(product.reload.name).to eq("Rainy Day")
       follow_redirect!
       expect(response).to render_template(:show)
