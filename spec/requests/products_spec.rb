@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Products Controllers", type: :request do
+  let!(:product) {Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")}
   describe "#index" do
     it "lists all products" do
-      product = Product.new(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products"
       expect(response).to render_template(:index)
     end
@@ -11,7 +11,6 @@ RSpec.describe "Products Controllers", type: :request do
 
   describe "#new" do
     it "shows the template to create a new product" do
-      product = Product.new(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products/new"
       expect(response).to render_template(:new)
     end
@@ -19,7 +18,6 @@ RSpec.describe "Products Controllers", type: :request do
 
   describe "#create" do
     it "creates a new product" do
-      product = Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products/new"
       expect(response).to render_template(:new)
       post "/products", :params => { :product => { category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting" }}
@@ -32,7 +30,6 @@ RSpec.describe "Products Controllers", type: :request do
 
   describe "#show" do
     it "shows information about the product" do
-      product = Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products/#{product.id}"
       expect(response).to render_template(:show)
     end
@@ -40,14 +37,12 @@ RSpec.describe "Products Controllers", type: :request do
 
   describe "#edit" do
     it "edits the information about the product" do
-      product = Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products/#{product.id}/edit"
       expect(response).to render_template(:edit)
     end
   end
 
   describe "#update" do
-    let!(:product) {Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")}
     it "updates the information about the product" do
       get "/products/#{product.id}/edit"
       expect(response).to render_template(:edit)
@@ -61,7 +56,6 @@ RSpec.describe "Products Controllers", type: :request do
 
   describe "#destroy" do
     it "deletes the product from the database" do
-      product = Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting")
       get "/products/#{product.id}"
       expect(response).to render_template(:show)
       delete "/products/#{product.id}"
