@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Products Controllers", type: :request do
-  let!(:product) do
-    Product.create(category: "paintings", name: "Elmo Raising", price: 456, description: "Beautiful painting") 
-  end
-  
+  let!(:product) { create(:product) }
+
   describe "#index" do
     it "lists all products" do
       get "/products"
