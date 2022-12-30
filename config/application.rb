@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 module Shop
   class Application < Rails::Application
     config.load_defaults 7.0
-    config.factory_bot.definition_file_paths = ["custom/factories"]
+    # config.factory_bot.definition_file_paths = ["custom/factories"]
     config.generators.system_tests = nil
   end
 end

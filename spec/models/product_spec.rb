@@ -1,60 +1,61 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  let!(:product) { build(:product) }
+
   describe "#category" do
     it "validates presence of the category" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
       expect(product).to be_valid
     end
 
-    it "does not save the product, if category has not been provided" do
-      product = Product.new(category: nil, name: "Elmo Raising", price: 456, description: "Beautiful painting")
-      expect(product).not_to be_valid
+    context "not valid attribute" do
+      let!(:product) { build(:product, category: nil) }
+
+      it "does not save the product, if category has not been provided" do
+        expect(product).not_to be_valid
+      end
     end
   end
 
   describe "#name" do
     it "validates presence of the name" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
       expect(product).to be_valid
     end
 
-    it "does not save the product if name has nor been provided" do
-      product = Product.new(category: 1, name: nil, price: 456, description: "Beautiful painting")
+    it "does not save the product if name has not been provided" do
+      product = build(:product, name: nil) 
       expect(product).not_to be_valid
     end
 
     it "does not save the product if the name is too long" do
-      product = Product.new(category: 1, name: "Elmo Raising"*50, price: 456, description: "Beautiful painting")
+      product = build(:product, name: "Elmo Raising"*50) 
       expect(product).not_to be_valid
     end
   end
 
   describe "#price" do
     it "validates presence of the price" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
       expect(product).to be_valid
     end
 
     it "does not save the product if price has not been provided" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: nil, description: "Beautiful Painting")
+      product = build(:product, price: nil) 
       expect(product).not_to be_valid
     end
 
     it "does not save the product if price is not numerical" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: "dwa", description: "Beautiful painting")
+      product = build(:product, price: "dwa")
       expect(product).not_to be_valid
     end
   end
 
   describe "#description" do
     it "validates presence of the description" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: "Beautiful painting")
       expect(product).to be_valid
     end
 
     it "does not save the product if the description has not been provided" do
-      product = Product.new(category: 1, name: "Elmo Raising", price: 456, description: nil)
+      product = build(:product, description: nil) 
       expect(product).not_to be_valid
     end
   end 
