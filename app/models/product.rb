@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  has_many :users, through: :product_users
+  has_many :product_users
+
   validates :category, presence: true
             enum category: { paintings: 0, photo_prints: 1, sculptures: 2 }
 
