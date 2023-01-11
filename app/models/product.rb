@@ -2,6 +2,7 @@
 
 class Product < ApplicationRecord
   has_many :shopping_carts, through: :product_shopping_carts
+  has_many:product_shopping_carts, dependent: :destroy
   validates :category, presence: true
             enum category: { paintings: 0, photo_prints: 1, sculptures: 2 }
 
