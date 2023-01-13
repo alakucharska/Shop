@@ -1,0 +1,6 @@
+<h1> Shopping Cart show </h1>
+<ul>
+  <% @cart.products.each do |product| %>
+    <%= product.name %> 
+  <% end %>
+</ul>

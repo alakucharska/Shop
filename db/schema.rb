@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_02_105859) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_130114) do
+  create_table "product_shopping_carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "product_id", null: false
+    t.integer "shopping_cart_id", null: false
+    t.index ["product_id"], name: "index_product_shopping_carts_on_product_id"
+    t.index ["shopping_cart_id"], name: "index_product_shopping_carts_on_shopping_cart_id"
+  end
+
+  create_table "product_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -18,6 +32,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_105859) do
     t.float "price"
     t.string "description"
     t.integer "category"
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,4 +47,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_105859) do
     t.string "password_digest"
   end
 
+  add_foreign_key "product_shopping_carts", "products"
+  add_foreign_key "product_shopping_carts", "shopping_carts"
 end
