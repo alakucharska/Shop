@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Shopping Cart Controllers" , type: :request do
   let!(:shopping_cart) { create(:shopping_cart) }
+  
   describe "#show" do
     it "shows content of the shopping cart " do
       get "/shopping_carts/#{shopping_cart.id}"
