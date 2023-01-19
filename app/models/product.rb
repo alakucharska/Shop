@@ -14,4 +14,6 @@ class Product < ApplicationRecord
             numericality: true, numericality: { only_float: true, greater_than: 0 } 
 
   validates :description, presence: true, length: { maximum: 250 }
+
+  scope :sort_by_name, -> { order(name: :desc) }
 end

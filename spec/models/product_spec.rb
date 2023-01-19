@@ -8,6 +8,15 @@ RSpec.describe Product, type: :model do
       expect(product).to be_valid
       expect { product.save! }.to change { Product.count}.by(1)
     end
+
+    describe ".sort_by_name" do
+      let!(:product1) { create(:product, name: "Rain")}
+      let!(:product2) { create(:product, name: "Blanket")}
+      let!(:product3) { create(:product, name: "Dress")}
+      it "lists products in alphabetical order" do
+        expect(Product.sort_by_name).to match_array([product2, product3, product1])
+      end
+    end
   end
 
   describe "with invalid parameters" do
