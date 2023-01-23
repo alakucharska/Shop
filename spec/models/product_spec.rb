@@ -13,6 +13,7 @@ RSpec.describe Product, type: :model do
       let!(:product1) { create(:product, name: "Rain")}
       let!(:product2) { create(:product, name: "Blanket")}
       let!(:product3) { create(:product, name: "Dress")}
+      
       it "lists products in alphabetical order" do
         expect(Product.sort_by_name).to match_array([product2, product3, product1])
       end
