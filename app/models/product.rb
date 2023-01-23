@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  has_one_attached :pic
   has_many :product_shopping_carts, dependent: :destroy
   has_many :shopping_carts, through: :product_shopping_carts
   validates :category, presence: true
