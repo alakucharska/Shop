@@ -6,7 +6,10 @@
   <% @products.each do |product| %>
     <li>
       <%= product.name %>
+        <% if product.pic.attached? %>
+          <%= image_tag product.pic %>
+        <% end %>
     </li>
-     <%= button_to "Add #{product.name} to cart"
+     <%= button_to "Add #{product.name} to the cart" %>
   <% end %>
 </ul>

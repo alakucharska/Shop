@@ -4,6 +4,11 @@
 
 <%= form_with model: @product do |form| %>
   <div>
+    <%= form.label :product_pic %><br>
+    <%= form.file_field :pic %>
+  </div>
+  
+  <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
