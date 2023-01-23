@@ -16,5 +16,20 @@ class Product < ApplicationRecord
 
   validates :description, presence: true, length: { maximum: 250 }
 
+  validate :acceptable_image?
+
+  def acceptable_image?
+    return unless pic.attached?
+
+    unless pic.blob.byte_size <= 1.megabyte
+      errors.add(:pic, "The size of the picture is too big")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png"]
+      unless acceptable_types.include?(pic.content_type)
+        errors.add(:pic, "The picture must be JPEG or PNG")
+      end
+  end
+
   scope :sort_by_name, -> { order(name: :desc) }
 end
