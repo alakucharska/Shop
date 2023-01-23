@@ -2,7 +2,7 @@
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.sort_by_name
   end
 
   def new
