@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+<<<<<<< HEAD
   has_one_attached :image
+=======
+  has_one_attached :pic
+>>>>>>> 5b058f3e07b68e3149986022a9b1a33de4d4c9b8
   has_many :product_shopping_carts, dependent: :destroy
   has_many :shopping_carts, through: :product_shopping_carts
   validates :category, presence: true

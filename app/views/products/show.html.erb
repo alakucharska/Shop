@@ -4,8 +4,12 @@
 <p><%= @product.price %></p>
 <p><%= @product.description %></p>
 <p><%= @product.category %></p>
+<<<<<<< HEAD
 <p><%= image_tag @product.image.variant(resize_to_limit: [500, 500]) %></p>
 
+=======
+<p><%= image_tag @product.pic %></p>
+>>>>>>> 5b058f3e07b68e3149986022a9b1a33de4d4c9b8
 
 <ul>
   <li><%= link_to "Edit", edit_product_path(@product) %></li>
