@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  has_one_attached :pic
+  has_one_attached :image
   has_many :product_shopping_carts, dependent: :destroy
   has_many :shopping_carts, through: :product_shopping_carts
   validates :category, presence: true
@@ -19,15 +19,15 @@ class Product < ApplicationRecord
   validate :acceptable_image?
 
   def acceptable_image?
-    return unless pic.attached?
+    return unless image.attached?
 
-    unless pic.blob.byte_size <= 1.megabyte
-      errors.add(:pic, "The size of the picture is too big")
+    unless image.blob.byte_size <= 1.megabyte
+      errors.add(:image, "The size of the picture is too big")
     end
 
     acceptable_types = ["image/jpeg", "image/png"]
-      unless acceptable_types.include?(pic.content_type)
-        errors.add(:pic, "The picture must be JPEG or PNG")
+      unless acceptable_types.include?(image.content_type)
+        errors.add(:image, "The picture must be JPEG or PNG")
       end
   end
 
