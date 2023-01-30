@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-<<<<<<< HEAD
   has_one_attached :image
-=======
-  has_one_attached :pic
->>>>>>> 5b058f3e07b68e3149986022a9b1a33de4d4c9b8
   has_many :product_shopping_carts, dependent: :destroy
   has_many :shopping_carts, through: :product_shopping_carts
+  
   validates :category, presence: true
             enum category: { paintings: 0, photo_prints: 1, sculptures: 2 }
 
@@ -26,12 +23,12 @@ class Product < ApplicationRecord
     return unless image.attached?
 
     unless image.blob.byte_size <= 1.megabyte
-      errors.add(:image, "The size of the picture is too big")
+      errors.add(:image, "The size of the image is too big")
     end
 
     acceptable_types = ["image/jpeg", "image/png"]
       unless acceptable_types.include?(image.content_type)
-        errors.add(:image, "The picture must be JPEG or PNG")
+        errors.add(:image, "The image must be JPEG or PNG")
       end
   end
 

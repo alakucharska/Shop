@@ -6,12 +6,9 @@
   <% @products.each do |product| %>
     <li>
       <%= product.name %>
-<<<<<<< HEAD
       <%= product.category %>
-=======
->>>>>>> 5b058f3e07b68e3149986022a9b1a33de4d4c9b8
-        <% if product.pic.attached? %>
-          <%= image_tag product.pic %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image.variant(resize_to_limit: [150, 150]) %> 
         <% end %>
     </li>
      <%= button_to "Add #{product.name} to the cart" %>
