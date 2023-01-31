@@ -18,6 +18,15 @@ RSpec.describe Product, type: :model do
         expect(Product.sort_by_name).to match_array([product2, product3, product1])
       end
     end
+
+    describe "image" do
+      let!(:product) { build(:product, :with_valid_image) }
+
+      it "adds image to the product" do
+        expect(product).to be_valid
+        expect(product.image).to be_valid
+      end
+    end
   end
 
   describe "with invalid parameters" do
@@ -60,6 +69,18 @@ RSpec.describe Product, type: :model do
     describe "#category" do
       it "validates presence" do
         product = build(:product, category: nil) 
+        expect(product).not_to be_valid
+      end
+    end
+
+    describe "image" do
+      it "validates the size of the image" do
+        product = build(:product, :with_invalid_image_size)
+        expect(product).not_to be_valid
+      end
+
+      it "validates type of the image" do
+        product = build(:product, :with_invalid_image_type)
         expect(product).not_to be_valid
       end
     end

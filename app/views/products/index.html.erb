@@ -3,11 +3,14 @@
 <h1> Products </h1>
   <p> Discover & Buy Exclusive Art from Poland designed and created by artist Alicja Kucharska! </p>
 <ul>
-<% @products.each do |product| %>
-  <li>
-    <%= product.name %>
-    <%= product.category %>
-  </li>
-  <%= button_to "Add #{product.name} to cart" %>
-<% end %>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+      <%= product.category %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image.variant(resize_to_limit: [150, 150]) %> 
+        <% end %>
+    </li>
+     <%= button_to "Add #{product.name} to the cart" %>
+  <% end %>
 </ul>
